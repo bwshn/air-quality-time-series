@@ -13,8 +13,6 @@ lapply(list_of_packages, library, character.only = TRUE)
 
 # reading the data
 
-# note: don't forget to set your working directory, and put your data to a folder named "data"
-
 filenames = list.files("data") # gets the list of names in the data directory
 for (filename in filenames) {
     # loop through all files in the data folder
@@ -68,7 +66,7 @@ for (filename in filenames) {
             width = 6,
             height = 4,
             dpi = 300
-        ) # saves in the folder
+        ) # save the file
         Sys.sleep(2)
     }
 }
