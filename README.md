@@ -1,2 +1,2 @@
 # air-quality-time-series
-Time series for pollutants.
+Time series creation from different files for different stations.
