@@ -21,7 +21,7 @@ for (filename in filenames) {
             paste0("data/", filename),
             na = "-",
             skip = 1,
-            guess_max = min(8400, n_max = NULL)
+            guess_max = min(65536, n_max = NULL)
         ) #reads the excel
     station_names <-
         read_excel(paste0("data/", filename),
@@ -47,12 +47,11 @@ for (filename in filenames) {
         ) %>% rename("Date" = " (Tarih)") %>% as.data.frame() # naming corrections
     for (i in 2:ncol(my_data)) {
         my_data[, i] <-
-            sub(",", ".", sub("\\.", "", my_data[, i]))
+            sub(",", ".", gsub("\\.", "", my_data[, i]))
     } # replacing commas with dots
     
     my_data <-
         my_data %>% as_tibble() %>% mutate_if(is.character, as.numeric) # changing the type of elements in the data.frame and turning it into tibble
-    
     
     dir.create("figs", showWarnings = FALSE) # creating a file for the figures
     for (station in colnames(my_data)[colnames(my_data) != "Date"]) {
